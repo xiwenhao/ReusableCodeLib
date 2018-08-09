@@ -1,0 +1,90 @@
+####################################################################################
+
+sflow_filter.py
+
+####################################################################################
+
+1.配置格式
+	配置从SFLOW_FILTER_CONFIG获取,格式为JSON,自动区分宿主机:
+	{
+		"evidence":"src_mac",
+		"agent":"192.168.100.13",
+		"filter":"fa163e7fb260",
+		"mode":"filter"
+	}
+	----------------------------------
+	"evidence" 过滤的依据
+	"agent" 目标宿主机ip
+	"filter" 除此之外的字段会被过滤掉
+	"mode" 过滤模式或者全显示模式
+
+2.数据格式
+	数据返回STATUS_OVS,格式为JSON:
+	{
+		"output_port": "1",
+		"ip_ttl": "128",
+		"dst_mac": "fa:16:3e:cc:c4:49",
+		"src_port": "8",
+		"ip_size": "60",
+		"proto": "icmp",
+		"in_vlan": "0",
+		"ethernet_type": "0x0800",
+		"input_port": "614",
+		"agent": "192.168.100.13",
+		"packet_size": "78",
+		"src_ip": "192.168.1.167",
+		"out_vlan": "2090",
+		"dst_port": "0",
+		"tcp_flag": "0x00",
+		"sampling_rate": "2",
+		"dst_ip": "202.102.154.3",
+		"ip_tos": "0x00",
+		"src_mac": "fa:16:3e:7f:b2:60"
+	}
+	
+3.运维心跳数据
+	向OPERATION运维Topic发送心跳包, 格式为JSON, 周期20s:
+	{
+		"cmd": "heartbeats"
+		"type": "STATUS_OVS"
+		"message": {
+			"ip": "192.168.100.13",
+			"heart_time": "2017-09-20 09:19:39"
+		}
+    }
+
+	
+		
+4.运维配置ECHO数据
+	向OPERATION运维Topic发送CONFIG数据的ECHO信息:
+	{
+		"cmd": "echo"
+        "type": "STATUS_OVS"
+        "message": {
+            "ip": "192.168.100.13",
+            "switch_time": "2017-09-20 09:19:39",
+            "filter_cfg": 对于过滤规则的json.dumps数据
+		}
+	}
+	
+5.运维错误信息
+	向OPERATION运维Topic发送:
+	{
+		"cmd": "err_msg"
+        "type": "STATUS_OVS"
+        "message": {
+			"err_host": "192.168.100.13",
+			"err_time": "2017-09-20 09:19:39",
+			"err_info": "error config",
+			"err_cfg": 错误的信息的json.dumps数据
+        }
+	}
+
+ 
+####################################################################################
+####################################################################################
+
+		
+
+		
+
