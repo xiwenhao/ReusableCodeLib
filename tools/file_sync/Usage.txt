@@ -1,0 +1,12 @@
+修改setttings.py
+
+sync_file 上传文件的开关 如果只想执行命令不想覆盖文件可以赋值False
+
+start_cmd_list是在文件上传之前要执行的命令 比如创建相关目录(在有些环境下paramiko创建目录会报错)
+
+end_cmd_list是在文件上传之后执行的命令 比如启动某服务
+为了避免重复服务进程的问题 可以加上mutex_process里的互斥函数 启动服务前会先杀死前一个同名进程
+
+两个cmd_list为空时不会执行任何命令; 在settings里修改完后可以直接在settings里运行
+
+host无法连接(密码不正确) 会raise一个在定义前引用变量的错误 表示此任务失败

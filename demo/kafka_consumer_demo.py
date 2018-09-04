@@ -8,10 +8,12 @@
 from kafka import KafkaConsumer
 
 
-KAFKA = "192.168.6.22:9092"
-CONFIG_TOPIC = "STATUS_OVS"
+KAFKA = "192.168.3.32:9092"
+CONFIG_TOPIC = "OPERATION"
 
 consumer = KafkaConsumer(CONFIG_TOPIC, bootstrap_servers=KAFKA)
 
 for i in consumer:
-    print i.value
+    v = str(i.value)
+    if "heartbeat" not in v:
+        print v

@@ -23,7 +23,7 @@ import random
 import sys
 import os
 from urllib import urlopen
-from _para import Sftp, Timeout, HostRefuse, PasswordError
+# from _para import Sftp, Timeout, HostRefuse, PasswordError
 
 
 eventlet.monkey_patch()
@@ -32,23 +32,23 @@ CORS(app, supports_credentials=True)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
 
-@socketio.on('ssh_upload', namespace='/ssh')
-def upload(_dic):
-    global login_token
-        if _dic["current_part"] == total_part - 1:
-            log.warning("token %s --> upload data near complete" % token)
-            emit("ssh_upload_ack", {
-                "cmd": "UploadToVM",
-                "token": token,
-                "status": "NearComplete",
-                "errmsg": ""
-            })
-            sftp.current_part = -1
-            emit("ssh_upload_ack", {
-                "cmd": "UploadToVM",
-                "token": token,
-                "status": "Complete",
-                "errmsg": ""
-            })
+# @socketio.on('ssh_upload', namespace='/ssh')
+# def upload(_dic):
+#     global login_token
+#         if _dic["current_part"] == total_part - 1:
+#             log.warning("token %s --> upload data near complete" % token)
+#             emit("ssh_upload_ack", {
+#                 "cmd": "UploadToVM",
+#                 "token": token,
+#                 "status": "NearComplete",
+#                 "errmsg": ""
+#             })
+#             sftp.current_part = -1
+#             emit("ssh_upload_ack", {
+#                 "cmd": "UploadToVM",
+#                 "token": token,
+#                 "status": "Complete",
+#                 "errmsg": ""
+#             })
 
 

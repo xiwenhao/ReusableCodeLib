@@ -4,7 +4,7 @@
 # @company: heetian
 # @file: BGPcmdGeneration.py
 # @time: 2017/10/17 0017 下午 2:39
-# @desc:
+# @desc: ovs镜像命令生成(命令行实现)
 
 DEFAULT_NIC = 'em4'
 

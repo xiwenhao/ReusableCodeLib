@@ -36,17 +36,17 @@ class WSmanager(object):
         host = self.Host(host, item_list)
         self.host_list.append(host)
 
-    def sendMSG(self):
-        for ws in self.ws_list:
-            try:
-                for host in self.host_list:
-                    for item in host.item_list:
-                        msg = zab.getInfoByItem(item)
-                        ws.send(msg)
-            except WebSocketError:
-                self.ws_list.pop(ws)
-                print "%s quit!" % ws
-                continue
+    # def sendMSG(self):
+    #     for ws in self.ws_list:
+    #         try:
+    #             for host in self.host_list:
+    #                 for item in host.item_list:
+    #                     msg = zab.getInfoByItem(item)
+    #                     ws.send(msg)
+    #         except WebSocketError:
+    #             self.ws_list.pop(ws)
+    #             print "%s quit!" % ws
+    #             continue
 
 
 app = Flask(__name__)

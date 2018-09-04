@@ -38,7 +38,7 @@ d = {
         "b": 1
     }
 }
-
+# lambda 返回一个可以进行排序的元素(数字或字符)
 print sorted(d.iteritems(), key=lambda x: x[1]["a"], reverse=True)
 print ""
 print sorted(d.iteritems(), key=lambda x: x[1]["b"], reverse=True)

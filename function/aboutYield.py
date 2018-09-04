@@ -13,5 +13,6 @@ def mygen():
 
 
 if __name__ == '__main__':
+    # 生成器可以看做是类 需要实例化
     print type(mygen())
 
