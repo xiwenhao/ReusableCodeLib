@@ -1,0 +1,9 @@
+unit_trasform_return_byte = {
+    "GB": lambda x: x * 1000 * 1000 * 1000,
+    "Gib": lambda x: x * 1024 * 1024 * 1024,
+    "MB": lambda x: x * 1000 * 1000,
+    "MiB": lambda x: x * 1024 * 1024,
+    "KB": lambda x: x * 1000,
+    "KiB": lambda x: x * 1024,
+    "B": lambda x: x
+}
